@@ -23,20 +23,32 @@ def move_circle():
         draw_boy(x, y)
         angle += 0.01
 
-def move_rectangle():
-    print("rectangle")
+def move_right():
     for y in range(300, 501, 2):
         x = 600
         draw_boy(x, y)
+
+def move_top():
     for x in range(600, 199, -2):
         y = 500
         draw_boy(x, y)
+
+def move_left():
     for y in range(500, 299, -2):
         x = 200
         draw_boy(x, y)
+
+def move_bottom():
     for x in range(200, 601, 2):
         y = 300
         draw_boy(x, y)
+
+def move_rectangle():
+    print("rectangle")
+    move_right()
+    move_top()
+    move_left()
+    move_bottom()
 
 def move_triangle():
     print("triangle")
