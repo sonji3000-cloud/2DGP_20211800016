@@ -1,4 +1,5 @@
 # 실습 과제 진행
+from math import pi, cos, sin
 from pico2d import *
 
 open_canvas(800, 600)
