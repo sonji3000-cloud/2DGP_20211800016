@@ -55,6 +55,13 @@ def move_rectangle():
 def move_triangle():
     # 삼각형을 움직이는 코드 작성
     print("triangle")
+    for i in range(201):
+        x = 600 - i
+        y = 300 + i
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.01)
     pass
 
 
