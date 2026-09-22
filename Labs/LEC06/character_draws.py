@@ -11,11 +11,15 @@ x, y = center_x, center_y
 
 def move_circle():
     angle = 0
-    x = center_x + radius * cos(angle)
-    y = center_y + radius * sin(angle)
     print("circle")
-    clear_canvas()
-    character.draw(x, y)
+    while angle < 2 * pi:
+        x = center_x + radius * cos(angle)
+        y = center_y + radius * sin(angle)
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.01)
+        angle += 0.01
     # 원을 움직이는 코드 작성
     pass
 
