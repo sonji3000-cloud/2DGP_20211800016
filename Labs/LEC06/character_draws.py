@@ -7,7 +7,6 @@ open_canvas(800, 600)
 character = load_image('character.png')
 center_x, center_y = 400, 300
 radius = 200
-x, y = center_x, center_y
 
 def move_circle():
     angle = 0
