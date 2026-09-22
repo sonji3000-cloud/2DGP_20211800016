@@ -7,6 +7,8 @@ character = load_image('character.png')
 
 def move_circle():
     print("circle")
+    clear_canvas()
+    character.draw(400, 300)
     # 원을 움직이는 코드 작성
     pass
 
