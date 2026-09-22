@@ -11,6 +11,8 @@ x, y = center_x, center_y
 
 def move_circle():
     angle = 0
+    x = center_x + radius * cos(angle)
+    y = center_y + radius * sin(angle)
     print("circle")
     clear_canvas()
     character.draw(x, y)
