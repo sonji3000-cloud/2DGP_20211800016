@@ -19,11 +19,8 @@ def move_circle():
         update_canvas()
         delay(0.01)
         angle += 0.01
-    # 원을 움직이는 코드 작성
-    pass
 
 def move_rectangle():
-    # 사각형을 움직이는 코드 작성
     print("rectangle")
     for y in range(300, 501, 2):
         x = 600
@@ -49,10 +46,8 @@ def move_rectangle():
         character.draw(x, y)
         update_canvas()
         delay(0.01)
-    pass
 
 def move_triangle():
-    # 삼각형을 움직이는 코드 작성
     print("triangle")
     for i in range(201):
         x = 600 - i
@@ -74,13 +69,11 @@ def move_triangle():
         character.draw(x, y)
         update_canvas()
         delay(0.01)
-    pass
 
 
 while True:
     move_circle()
     move_rectangle()
     move_triangle()
-    pass
 
 close_canvas()
