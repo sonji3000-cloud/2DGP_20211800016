@@ -10,6 +10,7 @@ radius = 200
 x, y = center_x, center_y
 
 def move_circle():
+    angle = 0
     print("circle")
     clear_canvas()
     character.draw(x, y)
