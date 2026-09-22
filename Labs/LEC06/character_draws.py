@@ -3,6 +3,8 @@ from pico2d import *
 
 open_canvas(800, 600)
 
+character = load_image('character.png')
+
 def move_circle():
     print("circle")
     # 원을 움직이는 코드 작성
