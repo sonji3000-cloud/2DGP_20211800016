@@ -16,7 +16,6 @@ def draw_boy(x, y):
 
 def move_circle():
     angle = 0
-    print("circle")
     while angle < 2 * pi:
         x = center_x + radius * cos(angle)
         y = center_y + radius * sin(angle)
@@ -44,14 +43,12 @@ def move_bottom():
         draw_boy(x, y)
 
 def move_rectangle():
-    print("rectangle")
     move_right()
     move_top()
     move_left()
     move_bottom()
 
 def move_triangle():
-    print("triangle")
     for i in range(201):
         x = 600 - i
         y = 300 + i
