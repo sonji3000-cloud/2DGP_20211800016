@@ -4,11 +4,12 @@ from pico2d import *
 open_canvas(800, 600)
 
 character = load_image('character.png')
+x, y = 400, 300
 
 def move_circle():
     print("circle")
     clear_canvas()
-    character.draw(400, 300)
+    character.draw(x, y)
     # 원을 움직이는 코드 작성
     pass
 
