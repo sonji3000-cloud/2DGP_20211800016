@@ -69,6 +69,12 @@ def move_triangle():
         character.draw(x, y)
         update_canvas()
         delay(0.01)
+    for x in range(200, 601, 2):
+        y = 300
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.01)
     pass
 
 
