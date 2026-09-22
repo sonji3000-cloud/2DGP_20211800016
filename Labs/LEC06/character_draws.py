@@ -12,7 +12,7 @@ def draw_boy(x, y):
     clear_canvas()
     character.draw(x, y)
     update_canvas()
-    delay(0.01)
+    delay(0.008)
 
 def move_circle():
     angle = 0
