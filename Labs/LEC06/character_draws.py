@@ -78,7 +78,6 @@ def move_triangle():
 
 
 while True:
-    update_canvas()
     move_circle()
     move_rectangle()
     move_triangle()
