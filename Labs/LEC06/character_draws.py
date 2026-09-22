@@ -26,8 +26,8 @@ def move_circle():
 def move_rectangle():
     # 사각형을 움직이는 코드 작성
     print("rectangle")
-    for x in range(200, 601, 5):
-        y = 100
+    for y in range(300, 501, 5):
+        x = 600
         clear_canvas()
         character.draw(x, y)
         update_canvas()
