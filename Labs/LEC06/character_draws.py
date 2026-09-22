@@ -38,6 +38,12 @@ def move_rectangle():
         character.draw(x, y)
         update_canvas()
         delay(0.01)
+    for y in range(500, 299, -5):
+        x = 200
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.01)
     pass
 
 def move_triangle():
