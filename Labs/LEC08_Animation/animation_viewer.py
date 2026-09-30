@@ -31,8 +31,7 @@ def walk():
 def run():
     for frame in range(6):
         clear_canvas()
-        warrior.clip_draw(195 + frame * 165, 454, 150, 155,
-                          400, 300, 300, 310)
+        draw_frame(195 + frame * 165, 454, 150, 155)
         update_canvas()
         delay(0.2)
 
