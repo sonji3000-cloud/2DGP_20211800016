@@ -25,10 +25,7 @@ def idle():
 
 def walk():
     for frame in range(8):
-        clear_canvas()
-        draw_frame(195 + frame * 165, 649, 140, 150)
-        update_canvas()
-        delay(0.2)
+        play_frame(195 + frame * 165, 649, 140, 150)
 
 
 def run():
