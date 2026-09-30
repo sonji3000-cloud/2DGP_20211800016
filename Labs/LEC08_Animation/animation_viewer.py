@@ -41,10 +41,12 @@ def attack():
 
 
 def attack2():
-    for frame in range(4):
+    # The last row has uneven spacing; align each frame by the character.
+    frame_x = (205, 451, 645, 891)
+    for x in frame_x:
         clear_canvas()
-        warrior.clip_draw(185 + frame * 246, 94, 240, 150,
-                          400, 300, 480, 300)
+        warrior.clip_draw(x, 94, 210, 150,
+                          400, 300, 420, 300)
         update_canvas()
         delay(0.2)
 
