@@ -4,6 +4,14 @@ open_canvas()
 
 warrior = load_image('WarriorSprite.png')
 
+
+def draw_frame(left, bottom, width, height):
+    warrior.clip_draw(
+        left, bottom, width, height,
+        400, 300, width * 2, height * 2
+    )
+
+
 def idle():
     for frame in range(4):
         clear_canvas()
