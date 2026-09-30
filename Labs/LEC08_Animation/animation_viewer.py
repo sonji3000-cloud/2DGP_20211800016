@@ -35,10 +35,7 @@ def run():
 
 def attack():
     for frame in range(4):
-        clear_canvas()
-        draw_frame(205 + frame * 246, 274, 240, 155)
-        update_canvas()
-        delay(0.2)
+        play_frame(205 + frame * 246, 274, 240, 155)
 
 
 def attack2():
