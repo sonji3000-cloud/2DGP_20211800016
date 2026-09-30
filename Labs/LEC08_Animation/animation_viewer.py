@@ -11,5 +11,12 @@ while(True):
                           400, 300, 280, 280)
         update_canvas()
         delay(0.2)
-        
+
+    for frame in range(8):
+        clear_canvas()
+        warrior.clip_draw(195 + frame * 165, 649, 140, 150,
+                          400, 300, 280, 300)
+        update_canvas()
+        delay(0.2)
+
 close_canvas()
