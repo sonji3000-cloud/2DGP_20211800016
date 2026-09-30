@@ -12,13 +12,16 @@ def draw_frame(left, bottom, width, height):
     )
 
 
+def play_frame(left, bottom, width, height):
+    clear_canvas()
+    draw_frame(left, bottom, width, height)
+    update_canvas()
+    delay(0.2)
+
+
 def idle():
     for frame in range(4):
-        clear_canvas()
-        draw_frame(225 + frame * 165, 839, 140, 140)
-        update_canvas()
-        delay(0.2)
-
+        play_frame(225 + frame * 165, 839, 140, 140)
 
 def walk():
     for frame in range(8):
@@ -45,7 +48,6 @@ def attack():
 
 
 def attack2():
-    # The last row has uneven spacing; align each frame by the character.
     frame_x = (205, 451, 645, 891)
     for x in frame_x:
         clear_canvas()
