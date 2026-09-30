@@ -40,8 +40,18 @@ def attack():
         delay(0.2)
 
 
+def attack2():
+    for frame in range(4):
+        clear_canvas()
+        warrior.clip_draw(185 + frame * 246, 94, 240, 150,
+                          400, 300, 480, 300)
+        update_canvas()
+        delay(0.2)
+
+
 while(True):
     idle()
     walk()
     run()
     attack()
+    attack2()
