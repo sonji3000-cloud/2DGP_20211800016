@@ -49,8 +49,7 @@ def attack2():
     frame_x = (205, 451, 645, 891)
     for x in frame_x:
         clear_canvas()
-        warrior.clip_draw(x, 94, 210, 150,
-                          400, 300, 420, 300)
+        draw_frame(x, 94, 210, 150)
         update_canvas()
         delay(0.2)
 
