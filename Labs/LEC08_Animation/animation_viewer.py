@@ -48,8 +48,7 @@ def attack2():
 
 
 while(True):
-    idle()
-    walk()
-    run()
-    attack()
-    attack2()
+    for animation in (idle, walk, run, attack, attack2):
+        for repeat in range(5):
+            animation()
+        delay(1.0)
