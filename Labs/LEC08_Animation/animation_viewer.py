@@ -15,8 +15,7 @@ def draw_frame(left, bottom, width, height):
 def idle():
     for frame in range(4):
         clear_canvas()
-        warrior.clip_draw(225 + frame * 165, 839, 140, 140,
-                          400, 300, 280, 280)
+        draw_frame(225 + frame * 165, 839, 140, 140)
         update_canvas()
         delay(0.2)
 
