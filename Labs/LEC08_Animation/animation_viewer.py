@@ -23,8 +23,7 @@ def idle():
 def walk():
     for frame in range(8):
         clear_canvas()
-        warrior.clip_draw(195 + frame * 165, 649, 140, 150,
-                          400, 300, 280, 300)
+        draw_frame(195 + frame * 165, 649, 140, 150)
         update_canvas()
         delay(0.2)
 
