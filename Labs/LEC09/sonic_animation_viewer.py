@@ -9,6 +9,7 @@ CANVAS_HEIGHT = 600
 SHEET_WIDTH = 399
 SHEET_HEIGHT = 525
 SCALE = 4
+FRAME_SECONDS = 0.1
 
 
 def row_frames(top, bottom, spans):
@@ -152,7 +153,7 @@ def play_animation(sheet, frames):
     """동작의 프레임을 순서대로 표시한다."""
     for frame in frames:
         draw_frame(sheet, frame)
-        delay(0.1)
+        delay(FRAME_SECONDS)
 
 
 def main():
