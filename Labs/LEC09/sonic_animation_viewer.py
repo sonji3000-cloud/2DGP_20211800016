@@ -26,7 +26,8 @@ def row_frames(top, bottom, spans):
     )
 
 
-ANIMATIONS = (
+# 원본 시트의 행별 좌표. 실제 재생 단위는 아래 ANIMATION_SPECS에서 나눈다.
+SPRITE_ROWS = (
     ("동작 01 · 1행", row_frames(39, 77, (
         (1, 29),
         (31, 56),
@@ -126,20 +127,30 @@ ANIMATIONS = (
 )
 
 
-# 시트의 행 순서에 대응하는 (가로 이동 속도 px/s, 점프 높이 px).
-# 자세만 바뀌는 회전 진입과 포즈는 중앙에서 재생한다.
-MOTIONS = (
-    (100, 0),   # 1행: 걷기
-    (240, 0),   # 2행: 달리기
-    (320, 0),   # 3행: 질주
-    (0, 0),     # 4행: 회전 진입
-    (220, 0),   # 5행: 구르기
-    (260, 0),   # 6행: 회전 달리기
-    (340, 0),   # 7행: 고속 회전 달리기
-    (160, 120), # 8행: 점프
-    (120, 0),   # 9행: 걷기 변형
-    (0, 0),     # 10행: 포즈
+# (이름, 시트 행, 첫 프레임, 마지막 프레임, (가로 속도, 점프 높이)).
+# 행과 프레임 번호는 1부터 시작하며 마지막 번호를 포함한다.
+# 프레임 범위와 이동 설정을 함께 선언해 분할 시 설정이 밀리지 않게 한다.
+ANIMATION_SPECS = (
+    ("대기", 1, 1, 7, (0, 0)),
+    ("대기 별도 동작", 1, 8, 11, (0, 0)),
+    ("달리기", 2, 1, 12, (240, 0)),
+    ("질주", 3, 1, 6, (320, 0)),
+    ("회전 진입", 4, 1, 9, (0, 0)),
+    ("구르기", 5, 1, 6, (220, 0)),
+    ("회전 달리기", 6, 1, 6, (260, 0)),
+    ("고속 회전 달리기", 7, 1, 6, (340, 0)),
+    ("점프", 8, 1, 6, (160, 120)),
+    ("공중 자세", 8, 7, 8, (0, 0)),
+    ("걷기 변형", 9, 1, 8, (120, 0)),
+    ("포즈 A", 10, 1, 2, (0, 0)),
+    ("포즈 B", 10, 3, 4, (0, 0)),
 )
+
+ANIMATIONS = tuple(
+    (name, SPRITE_ROWS[row - 1][1][first - 1:last])
+    for name, row, first, last, _ in ANIMATION_SPECS
+)
+MOTIONS = tuple(motion for _, _, _, _, motion in ANIMATION_SPECS)
 
 
 def motion_pose(frames, motion, elapsed):
@@ -173,12 +184,18 @@ def draw_frame(sheet, frame, pose):
 
 def validate_animations():
     """동작 수와 잘못 잘린 프레임을 실행 전에 검사한다."""
-    if len(ANIMATIONS) != 10:
-        raise ValueError("소닉 동작이 10종이어야 합니다.")
+    for name, row, first, last, _ in ANIMATION_SPECS:
+        if not (1 <= row <= len(SPRITE_ROWS)
+                and 1 <= first <= last <= len(SPRITE_ROWS[row - 1][1])):
+            raise ValueError(f"{name}의 원본 프레임 범위가 잘못되었습니다.")
     if len(MOTIONS) != len(ANIMATIONS):
         raise ValueError("각 동작에 이동 설정이 하나씩 있어야 합니다.")
     if sum(len(frames) for _, frames in ANIMATIONS) != 76:
         raise ValueError("소닉 프레임이 총 76개여야 합니다.")
+    source_frames = {frame for _, frames in SPRITE_ROWS for frame in frames}
+    playback_frames = {frame for _, frames in ANIMATIONS for frame in frames}
+    if len(source_frames) != 76 or playback_frames != source_frames:
+        raise ValueError("분리된 동작에 누락되거나 중복된 프레임이 있습니다.")
     for name, frames in ANIMATIONS:
         if not frames:
             raise ValueError(f"{name}에 프레임이 없습니다.")
