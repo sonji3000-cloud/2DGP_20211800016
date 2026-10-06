@@ -169,7 +169,9 @@ def main():
         sheet = load_image(str(IMAGE_PATH))
         if (sheet.w, sheet.h) != (SHEET_WIDTH, SHEET_HEIGHT):
             raise ValueError("스프라이트 시트 크기가 399×525px이어야 합니다.")
-        play_animation(sheet, ANIMATIONS[0][1])
+        while True:
+            for _, frames in ANIMATIONS:
+                play_animation(sheet, frames)
     finally:
         close_canvas()
 
