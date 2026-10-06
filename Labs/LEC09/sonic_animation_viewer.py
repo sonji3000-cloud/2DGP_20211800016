@@ -8,6 +8,7 @@ CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 600
 SHEET_WIDTH = 399
 SHEET_HEIGHT = 525
+SCALE = 4
 
 
 def main():
@@ -19,7 +20,7 @@ def main():
         if (sheet.w, sheet.h) != (SHEET_WIDTH, SHEET_HEIGHT):
             raise ValueError("스프라이트 시트 크기가 399×525px이어야 합니다.")
         clear_canvas()
-        sheet.clip_draw(1, 447, 29, 39, 600, 300)
+        sheet.clip_draw(1, 447, 29, 39, 600, 300, 29 * SCALE, 39 * SCALE)
         update_canvas()
         delay(1.0)
     finally:
