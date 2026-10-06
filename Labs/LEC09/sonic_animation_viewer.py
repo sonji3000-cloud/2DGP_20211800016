@@ -176,10 +176,19 @@ def play_animation(sheet, frames):
     return wait_with_events(PAUSE_SECONDS)
 
 
+def validate_display_bounds():
+    """모든 확대 프레임이 캔버스 안에 들어가는지 확인한다."""
+    for name, frames in ANIMATIONS:
+        for _, _, width, height in frames:
+            if width * SCALE > CANVAS_WIDTH or height * SCALE > CANVAS_HEIGHT:
+                raise ValueError(f"{name}의 프레임이 캔버스를 벗어납니다.")
+
+
 def main():
     if not IMAGE_PATH.is_file():
         raise FileNotFoundError(IMAGE_PATH)
     validate_animations()
+    validate_display_bounds()
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     try:
         sheet = load_image(str(IMAGE_PATH))
