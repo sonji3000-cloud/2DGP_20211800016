@@ -132,9 +132,26 @@ def draw_frame(sheet, frame):
     update_canvas()
 
 
+def validate_animations():
+    """동작 수와 잘못 잘린 프레임을 실행 전에 검사한다."""
+    if len(ANIMATIONS) != 10:
+        raise ValueError("소닉 동작이 10종이어야 합니다.")
+    if sum(len(frames) for _, frames in ANIMATIONS) != 76:
+        raise ValueError("소닉 프레임이 총 76개여야 합니다.")
+    for name, frames in ANIMATIONS:
+        if not frames:
+            raise ValueError(f"{name}에 프레임이 없습니다.")
+        for left, bottom, width, height in frames:
+            if not (0 <= left < SHEET_WIDTH and 0 <= bottom < SHEET_HEIGHT):
+                raise ValueError(f"{name}의 프레임 시작점이 시트 밖입니다.")
+            if not (0 < width <= SHEET_WIDTH - left and 0 < height <= SHEET_HEIGHT - bottom):
+                raise ValueError(f"{name}의 프레임 크기가 시트를 벗어납니다.")
+
+
 def main():
     if not IMAGE_PATH.is_file():
         raise FileNotFoundError(IMAGE_PATH)
+    validate_animations()
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     try:
         sheet = load_image(str(IMAGE_PATH))
