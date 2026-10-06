@@ -21,6 +21,19 @@ def row_frames(top, bottom, spans):
 
 
 ANIMATIONS = (
+    ("동작 01 · 1행", row_frames(39, 77, (
+        (1, 29),
+        (31, 56),
+        (58, 86),
+        (87, 115),
+        (118, 147),
+        (150, 179),
+        (182, 210),
+        (211, 239),
+        (240, 268),
+        (270, 293),
+        (302, 330),
+    ))),
 )
 
 
@@ -44,7 +57,7 @@ def main():
         sheet = load_image(str(IMAGE_PATH))
         if (sheet.w, sheet.h) != (SHEET_WIDTH, SHEET_HEIGHT):
             raise ValueError("스프라이트 시트 크기가 399×525px이어야 합니다.")
-        draw_frame(sheet, (1, 447, 29, 39))
+        draw_frame(sheet, ANIMATIONS[0][1][0])
         delay(1.0)
     finally:
         close_canvas()
