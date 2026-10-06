@@ -148,6 +148,13 @@ def validate_animations():
                 raise ValueError(f"{name}의 프레임 크기가 시트를 벗어납니다.")
 
 
+def play_animation(sheet, frames):
+    """동작의 프레임을 순서대로 표시한다."""
+    for frame in frames:
+        draw_frame(sheet, frame)
+        delay(0.1)
+
+
 def main():
     if not IMAGE_PATH.is_file():
         raise FileNotFoundError(IMAGE_PATH)
@@ -157,8 +164,7 @@ def main():
         sheet = load_image(str(IMAGE_PATH))
         if (sheet.w, sheet.h) != (SHEET_WIDTH, SHEET_HEIGHT):
             raise ValueError("스프라이트 시트 크기가 399×525px이어야 합니다.")
-        draw_frame(sheet, ANIMATIONS[0][1][0])
-        delay(1.0)
+        play_animation(sheet, ANIMATIONS[0][1])
     finally:
         close_canvas()
 
