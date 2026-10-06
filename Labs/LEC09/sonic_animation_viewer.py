@@ -3,10 +3,12 @@
 from pathlib import Path
 
 from pico2d import *
+IMAGE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 
 
 def main():
-    pass
+    if not IMAGE_PATH.is_file():
+        raise FileNotFoundError(IMAGE_PATH)
 
 
 if __name__ == "__main__":
