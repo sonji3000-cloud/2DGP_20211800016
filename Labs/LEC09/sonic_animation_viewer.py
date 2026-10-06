@@ -10,6 +10,7 @@ SHEET_WIDTH = 399
 SHEET_HEIGHT = 525
 SCALE = 4
 FRAME_SECONDS = 0.1
+REPEAT_COUNT = 5
 
 
 def row_frames(top, bottom, spans):
@@ -151,9 +152,10 @@ def validate_animations():
 
 def play_animation(sheet, frames):
     """동작의 프레임을 순서대로 표시한다."""
-    for frame in frames:
-        draw_frame(sheet, frame)
-        delay(FRAME_SECONDS)
+    for _ in range(REPEAT_COUNT):
+        for frame in frames:
+            draw_frame(sheet, frame)
+            delay(FRAME_SECONDS)
 
 
 def main():
