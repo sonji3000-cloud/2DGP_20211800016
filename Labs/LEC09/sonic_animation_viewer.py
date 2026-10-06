@@ -11,6 +11,7 @@ SHEET_HEIGHT = 525
 SCALE = 4
 FRAME_SECONDS = 0.1
 REPEAT_COUNT = 5
+PAUSE_SECONDS = 1.0
 
 
 def row_frames(top, bottom, spans):
@@ -156,6 +157,7 @@ def play_animation(sheet, frames):
         for frame in frames:
             draw_frame(sheet, frame)
             delay(FRAME_SECONDS)
+    delay(PAUSE_SECONDS)
 
 
 def main():
