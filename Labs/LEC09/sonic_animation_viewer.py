@@ -18,6 +18,9 @@ def main():
         sheet = load_image(str(IMAGE_PATH))
         if (sheet.w, sheet.h) != (SHEET_WIDTH, SHEET_HEIGHT):
             raise ValueError("스프라이트 시트 크기가 399×525px이어야 합니다.")
+        clear_canvas()
+        sheet.clip_draw(1, 447, 29, 39, 600, 300)
+        update_canvas()
         delay(1.0)
     finally:
         close_canvas()
