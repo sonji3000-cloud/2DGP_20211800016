@@ -151,13 +151,29 @@ def validate_animations():
                 raise ValueError(f"{name}의 프레임 크기가 시트를 벗어납니다.")
 
 
+def wait_with_events(seconds):
+    """지정 시간 동안 종료 이벤트를 계속 처리한다."""
+    deadline = get_time() + seconds
+    while True:
+        for event in get_events():
+            if event.type == SDL_QUIT:
+                return False
+            if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+                return False
+        remaining = deadline - get_time()
+        if remaining <= 0:
+            return True
+        delay(min(0.01, remaining))
+
+
 def play_animation(sheet, frames):
-    """동작의 프레임을 순서대로 표시한다."""
+    """동작을 다섯 번 재생하고 마지막 프레임을 유지한다."""
     for _ in range(REPEAT_COUNT):
         for frame in frames:
             draw_frame(sheet, frame)
-            delay(FRAME_SECONDS)
-    delay(PAUSE_SECONDS)
+            if not wait_with_events(FRAME_SECONDS):
+                return False
+    return wait_with_events(PAUSE_SECONDS)
 
 
 def main():
@@ -171,7 +187,8 @@ def main():
             raise ValueError("스프라이트 시트 크기가 399×525px이어야 합니다.")
         while True:
             for _, frames in ANIMATIONS:
-                play_animation(sheet, frames)
+                if not play_animation(sheet, frames):
+                    return
     finally:
         close_canvas()
 
