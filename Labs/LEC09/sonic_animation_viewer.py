@@ -6,6 +6,8 @@ from pico2d import *
 IMAGE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 600
+SHEET_WIDTH = 399
+SHEET_HEIGHT = 525
 
 
 def main():
@@ -13,6 +15,9 @@ def main():
         raise FileNotFoundError(IMAGE_PATH)
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     try:
+        sheet = load_image(str(IMAGE_PATH))
+        if (sheet.w, sheet.h) != (SHEET_WIDTH, SHEET_HEIGHT):
+            raise ValueError("스프라이트 시트 크기가 399×525px이어야 합니다.")
         delay(1.0)
     finally:
         close_canvas()
